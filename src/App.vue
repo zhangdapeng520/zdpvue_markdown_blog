@@ -1,5 +1,4 @@
 <template>
-  <PatchMeta />
   <div id="app-wrapper">
     <NavBar :title="'📝 Python私教博客'" :sections="blogSections" />
     <div>
@@ -21,7 +20,6 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
-import PatchMeta from './components/PatchMeta.vue'
 import Loader from './components/Loader.vue'
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'

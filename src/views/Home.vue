@@ -1,6 +1,4 @@
 <template>
-  <PatchMeta :title="section ? section : 'Minimal Vue3 + Markdown blog engine'"/>
-
   <div :style="`background-color: ${VUE_APP_MAIN_BG_CSS_COLOR}; color: ${VUE_APP_MAIN_TEXT_CSS_COLOR};`">
     <p
         v-if="section"
@@ -83,7 +81,6 @@
 
 <script setup lang="ts">
 import {ref, computed, inject} from 'vue'
-import PatchMeta from '../components/PatchMeta.vue'
 import paginate from '../utils/paginate'
 import {type PostIndex} from '../types/PostIndex'
 import blogConfig from '../blog_config'

@@ -1,5 +1,4 @@
 <template>
-  <PatchMeta :title="title"/>
   <div class="container my-4 my-md-5">
     <!--渲染富文本-->
     <v-md-editor
@@ -20,7 +19,6 @@ import {onBeforeRouteUpdate} from 'vue-router'
 import router from '../router'
 import axios from 'redaxios'
 import {type PostIndex} from '../types/PostIndex'
-import PatchMeta from '../components/PatchMeta.vue'
 import blogConfig from '../blog_config'
 
 const {VUE_APP_MAIN_BG_CSS_COLOR, VUE_APP_MAIN_TEXT_CSS_COLOR} = blogConfig
