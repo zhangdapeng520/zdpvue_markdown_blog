@@ -2,7 +2,6 @@
   <PatchMeta :title="section ? section : 'Minimal Vue3 + Markdown blog engine'"/>
 
   <div :style="`background-color: ${VUE_APP_MAIN_BG_CSS_COLOR}; color: ${VUE_APP_MAIN_TEXT_CSS_COLOR};`">
-    <hr v-if="section">
     <p
         v-if="section"
         class="text-center display-4 text-capitalize my-5"
@@ -13,9 +12,9 @@
     <div
         v-for="entry in pageStatus.visiblePosts"
         :key="entry.id"
-        class="container markdown-body p-3 p-md-4 mt-3"
+        class="container markdown-body p-3 p-md-4 my-3"
     >
-      <!-- TITLE -->
+      <!-- 标题 -->
       <router-link
           :to="`/${entry.section}/${entry.id}`"
           class="text-reset"
@@ -25,13 +24,14 @@
         </h3>
       </router-link>
 
-      <!-- POST DETAILS -->
+      <!-- 日期 -->
       <p
           class="font-weight-light font-italic m-0 p-0"
           :class="!section ? 'text-right':'mb-3'"
       >
         {{ entry.date }}
       </p>
+      <!--分类-->
       <router-link
           v-if="!section"
           :to="`/${entry.section}`"
