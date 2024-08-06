@@ -31,6 +31,15 @@
           tabindex="1">
         <li class="category">Python</li>
         <li class="category">Golang</li>
+        <li class="nav-item">
+          <router-link
+              class="nav-link border rounded py-2 px-3 mr-2"
+              :to="'/login'"
+              :style="`color: ${VUE_APP_NAVBAR_TEXT_CSS_COLOR};`"
+          >
+            登录
+          </router-link>
+        </li>
         <li v-if="router.currentRoute.value.path !== '/editor'" class="nav-item">
           <router-link
               class="nav-link border rounded py-2 px-3"

@@ -7,6 +7,11 @@ const routes: Array<RouteRecordRaw> = [
         props: false
     },
     {
+        path: '/login',
+        component: () => import(/* webpackChunkName: "editor" */ '../views/Login.vue'),
+        props: false
+    },
+    {
         path: '/:section?',
         component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
         props: true
