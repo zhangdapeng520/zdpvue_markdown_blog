@@ -1,47 +1,51 @@
 <template>
-    <v-md-editor v-model="text" @save="onSave" height="85vh" :right-toolbar="'preview sync-scroll fullscreen'"></v-md-editor>
+  <form class="p-3">
+    <div class="form-group">
+      <label for="title">标题</label>
+      <input type="text" class="form-control" id="title">
+    </div>
+    <div class="form-group">
+      <label for="category">分类</label>
+      <select id="category" class="form-control">
+        <option selected>Python</option>
+        <option>Golang</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">描述</label>
+      <textarea class="form-control" id="description" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="content">内容</label>
+      <v-md-editor v-model="text" @save="onSave" height="100vh"
+                   :right-toolbar="'preview sync-scroll fullscreen'"></v-md-editor>
+    </div>
+    <button type="submit" class="btn btn-primary">保存</button>
+  </form>
+
 </template>
-  
+
 <script setup lang="ts">
 import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
 
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 // @ts-ignore | ts bug: https://github.com/microsoft/TypeScript/issues/40806
-const todayStr  = new Date().toLocaleDateString("en-US", options);
+const todayStr = new Date().toLocaleDateString("en-US", options);
 
-const text = `# New awesome blog post title 😎
-#### ${todayStr}
+const text = `# 请填写博客标题 😎
+## 副标题
 
-> Subtitle of your awesome new blog post
+> 一些内容
 
-Remember you can mix [MarkDown](https://www.markdownguide.org/getting-started/) syntax with regular <a href="https://www.w3schools.com/html/" target="_blank">HTML</a>.
-
-<p class="p-2 bg-danger text-white text-center">
-When using HTML you can apply <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" class="text-reset" target="_blank">bootstrap</a> classes to your code-blocks!
-</p>
-
-<div class="bg-info container text-white text-center">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      Two of three columns
-    </div>
-    <div class="col-sm">
-      Three of three columns
-    </div>
-  </div>
-</div>
-
-> ℹ️ Use the eraser button (3rd in the top toolbar) to clear the editor.`;
+其他的内容。。。
+`;
 
 const onSave = (text: string, html: string) => {
-    const postTitle = `post_${todayStr.replace(/,/mg,'').replace(/\s/mg,'_')}`;
-    const zip = new JSZip();
-    zip.file(`${postTitle}_source.md`, text);
-    zip.file(`${postTitle}_content.html`, `<!DOCTYPE html>
+  const postTitle = `post_${todayStr.replace(/,/mg, '').replace(/\s/mg, '_')}`;
+  const zip = new JSZip();
+  zip.file(`${postTitle}_source.md`, text);
+  zip.file(`${postTitle}_content.html`, `<!DOCTYPE html>
     <html>
       <head>
         <meta charset="UTF-8" />
@@ -53,10 +57,10 @@ const onSave = (text: string, html: string) => {
         </div>
       </body>
     </html>`);
-    zip.generateAsync({type:"blob"})
-    .then(function(content) {
+  zip.generateAsync({type: "blob"})
+      .then(function (content) {
         // see FileSaver.js
         saveAs(content, `${postTitle}.zip`);
-    });
+      });
 }
 </script>
